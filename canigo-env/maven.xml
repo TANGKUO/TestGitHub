@@ -1,5 +1,4 @@
 <project default="root" xmlns:j="jelly:core" xmlns:deploy="deploy"   xmlns:ant="jelly:ant" xmlns:maven="jelly:maven" xmlns:eclipse="eclipse" xmlns:war="jelly:war" xmlns:aspectwerkz="jelly:aspectwerkz" xmlns:u="jelly:util">
-<!-- -->
 
   <goal name="ctti:generate-classpath-eclipse" 
     description="Generate Eclipse .classpath file">
