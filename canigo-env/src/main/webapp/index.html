@@ -1,0 +1,14 @@
+<script>
+	var url = new String(document.location.pathname);
+	var ini = url.indexOf('/',1);
+	var context = "/";
+	if(ini!=-1){
+		context = context + url.substring(1,ini);
+	}
+	else if(url.length>1){
+		context = context + url.substring(1,url.length);
+	}
+
+
+	document.location = context + "/start.do";
+</script>

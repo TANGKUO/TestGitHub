@@ -1,0 +1,11 @@
+<aspectwerkz>
+    <system id="ExceptionHandlingAspect">
+        <package name="net.gencat.ctti.canigo.services.exceptions.aop.aspectwerkz">
+	        <aspect class="ExceptionHandlerAspect" container="net.gencat.ctti.canigo.services.exceptions.aop.aspectwerkz.container.WebApplicationContextAspectContainer" deployment-model="perJVM">
+			    <advice type="after throwing(exception)"
+						           bind-to="execution(* *.*(..))"
+						           name="handleException(java.lang.Throwable exception)"/>
+	        </aspect>
+        </package>
+    </system>
+</aspectwerkz>

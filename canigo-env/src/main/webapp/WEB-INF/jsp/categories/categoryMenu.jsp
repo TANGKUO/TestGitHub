@@ -1,0 +1,2 @@
+<%@ include file="/WEB-INF/jsp/includes/fwkTagLibs.jsp" %>
+<html:link page="/categories.do?reqCode=search"><fmt:message key="jsp.categories.categoryMenu.categories"/></html:link> &gt; <fmt:message key="jsp.categories.categoryMenu.edit_category"/>

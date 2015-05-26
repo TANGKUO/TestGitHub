@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="net.gencat.ctti.canigo.samples.prototip.model">
+	<class
+		name="Mail"
+		table="MAIL"
+	>
+		<id
+			name="id"
+			type="string"
+			column="MAILID"
+		>
+			<generator class="sequence">
+				<param name="sequence">mail_seq</param>
+			</generator>
+		</id>
+
+		<property
+			name="fromAddress"
+			column="FROM_ADDRESS"
+			type="string"
+			not-null="true"
+			length="80"
+		/>
+		<property
+			name="toAddress"
+			column="TO_ADDRESS"
+			type="string"
+			not-null="true"
+			length="80"
+		/>
+		<property
+			name="subject"
+			column="SUBJECT"
+			type="string"
+			not-null="true"
+			length="80"
+		/>
+		<property
+			name="message"
+			column="MESSAGE"
+			type="string"
+			not-null="true"
+			length="255"
+		/>
+
+
+	</class>	
+</hibernate-mapping>

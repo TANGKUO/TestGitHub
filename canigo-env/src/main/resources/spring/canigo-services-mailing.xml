@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="mailSender" class="net.gencat.ctti.canigo.services.mail.impl.SpringJavaMailSenderImpl">
+		<property name="host" value="${mailSender.host}"/>		
+		<property name="port" value="${mailSender.port}"/>		
+		<property name="username" value="${mailSender.username}"/>		
+		<property name="password" value="${mailSender.password}"/>		
+	</bean>
+	<bean id="mailService" class="net.gencat.ctti.canigo.services.mail.impl.SpringMailServiceImpl">
+		<property name="maxAttachmentSize" value="${mailService.maxAttachmentSize}"/>
+		<property name="mailSender"><ref bean="mailSender"/></property>
+		<property name="logService"><ref bean="loggingService"/></property>
+	</bean>
+</beans>

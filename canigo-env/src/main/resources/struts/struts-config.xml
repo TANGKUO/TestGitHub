@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+<struts-config>
+	<data-sources />
+	<form-beans>
+		<form-bean name="actionForm"
+			type="net.gencat.ctti.canigo.services.web.struts.SpringBindingActionForm"/>
+	</form-beans>
+
+	<global-exceptions />
+	<global-forwards>
+		<forward name="xml" path="pages.xml" />
+		<forward name="reportsController" path="/view.report?contentType=pdf"/>
+	</global-forwards>
+	<action-mappings>
+		<action path="/start" 
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="pages.start"/>		
+
+
+		<!-- Generic Forward Action  -->
+		<action path="/pagelogin" 
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="pages.login"/>	
+		<action path="/pagelogoff" 
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="pages.logoff"/>
+		<action path="/pageerror" 
+			type="org.apache.struts.actions.ForwardAction"
+			parameter="pages.error"/>
+
+
+		<action path="/categories" name="actionForm" scope="request"
+			parameter="reqCode">
+			<forward name="error" path="pages.categoryEdit" />
+			<forward name="edit" path="pages.categoryEdit" />
+			<forward name="create" path="pages.categoryEdit" />
+			<forward name="list" path="pages.categories" />
+			<forward name="errorList" path="pages.categories" />
+			<forward name="success" path="/categories.do?reqCode=search" redirect="true"/>
+		</action>
+		<action path="/llistaTraces" name="actionForm" scope="request" parameter="reqCode">		
+			<forward name="error" path="pages.admin.traces.choose" />
+			<forward name="errorSearch" path="pages.admin.traces.choose" />
+			<forward name="choose" path="pages.admin.traces.choose" />
+			<forward name="list" path="pages.admin.traces.list" />
+		</action>
+	</action-mappings>
+	<controller>
+		<set-property property="processorClass"
+			value="net.gencat.ctti.canigo.services.web.struts.ExtendedDelegatingTilesRequestProcessor"/>
+	</controller>
+	<message-resources parameter="i18n.applicationResources"
+		null="false" />
+			
+	<plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+	  <set-property property="contextConfigLocation"
+      	value="/WEB-INF/classes/spring/action-servlet.xml"/>
+	</plug-in>
+		
+	<plug-in className="org.apache.struts.tiles.TilesPlugin">
+	    <set-property property="definitions-config" value="/WEB-INF/classes/tiles/tiles-definitions.xml,/WEB-INF/classes/tiles/current/tiles-definitions.xml"/>
+	    <set-property property="moduleAware" value="true" />
+	</plug-in>
+</struts-config>
+

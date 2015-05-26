@@ -1,0 +1,155 @@
+/* CSS Formularis */
+input,select {
+	font-size: 1em
+}
+
+label {
+	font-size: 1em;
+	text-align: right;
+	/* 
+  color: #0D506C*/
+}
+
+/***** fieldsets *****/
+form fieldset {
+	clear: both;
+	font-size: 100%;
+	border-color: #CCC;
+	border-width: 2px 0 0 0;
+	border-style: solid none none none;
+	padding: 20px;
+	margin: 0 0 0 0;
+}
+
+form fieldset legend {
+	font-size: 1.25em;
+	font-weight: normal;
+	color: #0D506C;
+	margin: 0 0 0 0;
+	padding: 0 5px;
+}
+
+form fieldset legend span {
+	font-size: 1.25em;
+	font-weight: normal;
+	color: #0D506C;
+}
+
+fieldset fieldset legend {
+	font-size: 105%;
+	font-weight: bold;
+}
+
+legend span {
+	color: #999;
+	font-size: 90%;
+	letter-spacing: 0;
+}
+
+fieldset dl {
+	margin: 0;
+	padding: 0;
+}
+
+fieldset dt {
+	clear: left;
+	float: left;
+	width: 18em; /* increase for wider dt text */
+	text-align: right;
+	padding: 0 1em 0.5em 0;
+}
+
+fieldset dd {
+	padding: 0 0 0.5em 0;
+	font-weight: bold;
+}
+
+fieldset.labels label {
+	width: 15em;
+	float: left;
+	text-align: right;
+	display: block;
+	padding: 0 0.5em 0.2em 0;
+}
+
+fieldset.labels div {
+	padding: 0.2em 0;
+	clear: left
+}
+
+.fieldset-footer {
+	margin: 0;
+	position: relative;
+	left: -15px;
+	padding: 10px 0 15px 15px;
+	/*
+	background: #eee url(/img/field-back.gif) repeat-x;
+	*/
+	clear: left;
+	top: 15px;
+}
+
+fieldset fieldset input {
+	font-size: 100% !important;
+}
+
+/* Estil errors camps formulari */
+form .errFld {
+	padding: 1px;
+	border: 1px solid #F00;
+}
+
+form .errMsg {
+	color: red !important;
+}
+
+.required {
+	color: #C85E2C;
+	/*color: #F68622; font-weight: boldest;*/
+	vertical-align: -2px;
+}
+
+/* Estil pseudo (no Internet Explorer) per focus de components */
+input:focus,textarea:focus {
+	background: #ffd;
+	color: #000;
+}
+
+button {
+	height: 1.5em;
+	color: #000;
+	font-size: 1.12em;
+}
+
+/* Notes descriptives als components dels formularis*/
+.form-note {
+	font-size: .9em;
+	color: #999;
+	margin-bottom: 0.3em;
+	margin-top: 0.1em;
+	display: block;
+}
+
+form fieldset div.notes {
+	float: right;
+	width: 158px;
+	height: auto;
+	margin: 0 0 10px 10px;
+	padding: 5px;
+	border: 1px solid #666666;
+	background-color: #ffffe1;
+	color: #666666;
+	font-size: 88%;
+}
+
+form fieldset div.notes h4 {
+	background-image: url(../images/icon_info.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	padding: 3px 0 3px 27px;
+	border-width: 0 0 1px 0;
+	border-style: solid;
+	border-color: #666666;
+	color: #666666;
+	font-size: 110%;
+}

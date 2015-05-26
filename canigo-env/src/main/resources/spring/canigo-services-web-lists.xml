@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean name="baseHibernateAdapter"
+		class="net.mlw.vlh.adapter.hibernate3.Hibernate30Adapter">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="defaultNumberPerPage" value="5"/>
+		<property name="defaultSortColumn" value="id"/>
+		<property name="defaultSortDirection" value="asc"/>
+		<property name="removeEmptyStrings" value="true"/>
+		<property name="focusOptimalization" value="false"/>
+	</bean>
+	<bean name="valueListHandler"
+		class="net.mlw.vlh.DefaultValueListHandlerImpl">
+		<property name="config.adapters">
+			<map>
+				<entry key="tracesList">
+					<bean name="tracesListAdapter"
+						class="net.gencat.ctti.canigo.services.logging.log4j.xml.impl.DailyRollingFileLogFinderAdapter">
+						<property name="logBuilder">
+							<bean
+								class="net.gencat.ctti.canigo.services.logging.log4j.xml.impl.DailyRollingFileLogBuilder">
+								<property name="maxLogs" value="${tracesList.maxLogs}" />
+								<property name="fileDatePattern" value="${tracesList.fileDatePattern}" />
+								<property name="filterDatePattern" value="${tracesList.filterDatePattern}" />
+								<property name="logItemDatePattern" value="${tracesList.logItemDatePattern}" />
+								<property name="fileSystemService" ref="fileSystemService" />
+								<property name="logService" ref="loggingService" />
+								<property name="filtersConfig">
+									<map>
+										<entry key="userId" value="EQUALS" />
+										<entry key="nivell" value="EQUALS" />
+										<entry key="missatge" value="LIKE" />
+									</map>
+								</property>
+							</bean>
+						</property>
+						<property name="logService" ref="loggingService" />
+						<property name="defaultNumberPerPage" value="${tracesList.defaultNumberPerPage}" />
+					</bean>
+				</entry>
+				<entry key="fileList">
+					<bean name="fileListAdapter" class="net.gencat.ctti.canigo.samples.prototip.web.lists.impl.FileListAdapter">
+						<property name="tempDir" value="${fileService.tempDir}"/>
+						<property name="currentDirFilterName" value="currentDir"/>
+						<property name="fileService" ref="fileSystemService"/>
+						<property name="logService" ref="loggingService"/>
+						<property name="defaultNumberPerPage" value="5"/>
+						<property name="defaultSortColumn" value="id"/>
+						<property name="defaultSortDirection" value="asc"/>
+					</bean>
+				</entry>
+				<entry key="categoriesList">
+					<bean parent="baseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.samples.prototip.model.Category
+								AS vo WHERE 1=1 
+								/~descn: AND vo.descn LIKE {descn} ~/ 
+								/~sortColumn: ORDER BY vo.[sortColumn] [sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>
+				<entry key="productList">
+					<bean parent="baseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.samples.prototip.model.Product
+								AS vo WHERE 1=1 /~name: AND vo.name LIKE
+								{name} ~/ /~descn: AND vo.descn LIKE
+								{descn} ~/ /~category: AND
+								vo.category.id LIKE {category} ~/
+								/~sortColumn: ORDER BY vo.[sortColumn]
+								[sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>		
+				<entry key="userList">
+					<bean parent="baseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.services.security.model.UserLogin
+								AS vo WHERE 1=1 
+								/~userName: AND lower(vo.userName) LIKE lower({userName})% ~/ 
+								/~group.id: AND vo.group.id = {group.id} ~/ 
+								/~sortColumn: ORDER BY vo.[sortColumn] [sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>
+				<entry key="groupList">
+					<bean parent="baseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.services.security.model.PartyGroup
+								AS vo WHERE 1=1 
+								/~name: AND lower(vo.name) LIKE lower({name}) ~/ 
+								/~sortColumn: ORDER BY vo.[sortColumn] [sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>
+				<entry key="roleList">
+					<bean parent="baseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.services.security.model.Role
+								AS vo WHERE 1=1 
+								/~name: AND lower(vo.name) LIKE lower({name}) ~/ 
+								/~parent.id: AND vo.parent.id = {parent.id} ~/ 
+							</value>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean name="vlConfig" class="net.mlw.vlh.web.ValueListConfigBean"
+		singleton="false">
+		<property name="messageSource" ref="messageSource"/>
+		<property name="displayHelper">
+			<bean class="net.gencat.ctti.canigo.services.web.vlh.util.ContextPathImagesDisplayHelper"/>
+		</property>
+		<property name="displayProviders">
+			<map>
+				<entry key="ExportHTML">
+					<bean class="net.mlw.vlh.web.tag.support.HtmlDisplayProvider" singleton="false">
+						<property name="preAppendContextPath" value="true"/>
+					</bean>
+				</entry>
+				<entry key="ExportPDF">
+					<bean class="net.gencat.ctti.canigo.services.web.vlh.tag.support.PdfDisplayProvider" singleton="false">
+						<property name="logService" ref="loggingService"/>
+						<property name="i18nService" ref="i18nService"/>
+						<property name="skipColumns">
+							<list>
+								<value>jsp.categories.categoryList.actions</value>
+								<value>jsp.products.productList.actions</value>
+							</list>
+						</property>
+					</bean>
+				</entry>
+				<entry key="ExportExcel">
+					<bean class="net.gencat.ctti.canigo.services.web.vlh.tag.support.ExcelDisplayProvider" singleton="false">
+						<property name="logService" ref="loggingService"/>
+						<property name="i18nService" ref="i18nService"/>
+						<property name="skipColumns">
+							<list>
+								<value>jsp.categories.categoryList.actions</value>
+								<value>jsp.products.productList.actions</value>
+							</list>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+	<bean id="valueListHelper"
+		class="net.mlw.vlh.web.mvc.ValueListHandlerHelper">
+		<property name="valueListHandler">
+			<ref bean="valueListHandler" />
+		</property>
+	</bean>
+	<bean name="valueListActionHelper"
+		class="net.gencat.ctti.canigo.services.web.lists.impl.SimpleValueListActionHelper">
+		<property name="valueListHelper">
+			<ref bean="valueListHelper" />
+		</property>
+		<property name="maxExportRows" value="5"></property>
+		<property name="logService" ref="loggingService"/>
+	</bean>
+	
+	<bean name="searchPanelService"
+		 class="net.gencat.ctti.canigo.services.web.taglib.util.searchPanel.SearchPanelServiceBase">	   
+		<property name="valueListHandlerHelper">       
+			<ref bean="valueListHelper" />
+		</property>
+		<property name="loggingService">
+			<ref bean="loggingService" />
+		</property>		
+	</bean>
+	<bean name="extendedValueListActionHelper"
+		class="net.gencat.ctti.canigo.services.web.lists.impl.ExtendedValueListActionHelper">
+		<property name="valueListHelper">
+			<ref bean="valueListHelper" />
+		</property>
+		<property name="maxExportRows" value="10000"></property>
+		<property name="logService" ref="loggingService" />
+	</bean>
+	
+</beans>

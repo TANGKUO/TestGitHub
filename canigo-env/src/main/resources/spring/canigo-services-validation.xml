@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+<!-- Validation Service -->
+	<bean name="validatorFactory"
+		class="org.springmodules.validation.commons.DefaultValidatorFactory">
+		<property name="validationConfigLocations">
+			<list>
+				<value>/WEB-INF/classes/validation/validator-rules.xml</value>
+				<value>/WEB-INF/classes/validation/validation.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="validator" class="org.springmodules.validation.commons.DefaultBeanValidator">
+    	<property name="validatorFactory"><ref bean="validatorFactory"/></property>
+	</bean>
+	
+	<bean id="validationService" class="net.gencat.ctti.canigo.services.validation.commons.CommonsValidationServiceImpl">
+		<property name="validatorFactory">
+			<ref bean="validatorFactory" />
+		</property>		
+		<property name="i18nService">
+			<ref bean="i18nService" />
+		</property>	
+		<property name="loggingService">
+			<ref bean="loggingService" />
+		</property>			
+	</bean>
+	
+	<bean id="webValidationSubmit" class="net.gencat.ctti.canigo.services.web.validation.commons.WebValidationSubmit">	
+		<property name="webValidationService">
+			<ref bean="webValidationService" /> 
+		</property>	
+
+		<property name="loggingService">
+			<ref bean="loggingService" />
+		</property>					
+		
+	</bean>
+	
+	
+	
+
+</beans>

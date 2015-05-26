@@ -1,0 +1,123 @@
+/* BLOCS PRINCIPALS */
+@media screen , projection , print {
+	#top-section {
+		float:left;
+		clear:both;
+	}
+	
+	
+	#top-row-1 {
+		float:left;
+		left: 0;
+		top: 2;
+	}
+	
+	#top-row-2 {
+		float:left;
+		left: 0;
+		/*height: 16px;		*/
+		top: 0px;
+	}
+	
+	#top-row-3 {
+		left: 0;
+		height: 29px;
+	}
+	
+	
+	#mid-section {
+		float:left;
+		margin-top: 8px;
+		clear:both;
+		width:100%;
+	}
+	
+	
+	
+	#bottom-section {
+		left: 0;
+		top: 0;
+	}
+	
+	#top-row-1-col-1 {
+		float:left;
+		margin-left:4px;
+		margin-top:2px;
+	}
+	
+	#top-row-1-col-2 {
+		padding-left:8px;
+		vertical-align: bottom;
+		
+	}
+	
+	#top-row-1-col-3 {		
+		left: 0;
+		padding-right: 4px;
+		float:right;
+		height:100%;
+		top:4px;
+	}
+	
+	
+	#mid-col-1 {
+		float:left;
+		position:relative;
+		width: 207px;
+		/*width:20%;*/
+		/* Workaround IE passa layer abaix */
+		word-wrap: break-word;
+		overflow: hidden;
+	}
+	
+	#mid-col-2 {
+		position:relative;
+		float:left;
+		left:8px;
+		width:79%;
+		word-wrap: break-word;
+		overflow: hidden;
+	}
+	
+	
+	#mid-col-2-row-1 {
+		position:absolute;
+		width:100%;
+		height: 93px;
+	}
+	
+	#mid-col-2-row-2 {
+		position:relative;
+		width:100%;
+		height: 39px;
+	}
+	
+	#mid-col-2-row-3 {
+		position:relative;	
+		top:4px;
+		width:100%;
+	}
+	
+	#mid-col-2-row-4 {
+		position:relative;	
+		top:4px;
+		width:100%;
+	}
+	
+	
+
+	#bottom-col-1 {
+		position: relative;
+		clear: both;
+		width: 100%;
+		text-align: center;
+		color: #4D4C4A;
+		background: url("../images/separador_ligero.gif") center repeat-x;
+		margin: .5em 0 15px 0;
+		font-size: .9em;
+		padding-top: 1.7em;
+		vertical-align: bottom;
+		
+	}
+		
+}

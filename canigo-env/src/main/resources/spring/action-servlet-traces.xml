@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean lazy-init="true" name="/llistaTraces"
+		class="net.gencat.ctti.canigo.samples.prototip.struts.action.TracesAction">
+		<property name="logService" ref="loggingService" />
+		<property name="pojoClass" value="net.gencat.ctti.canigo.services.logging.log4j.xml.impl.TrazaCtti" />
+		<property name="valueListActionHelper">
+			<bean parent="extendedValueListActionHelper">
+				<property name="exposedProperties">
+					<list>
+						<value>ruta</value>
+					</list>
+				</property>
+				<property name="listName"><value>tracesList</value></property>
+				<property name="tableId" value="LOGS"/>
+			</bean>
+		</property>
+		<property name="levels">
+			<list>
+				<value>DEBUG</value>
+				<value>INFO</value>
+				<value>WARN</value>
+				<value>ERROR</value>
+				<value>FATAL</value>
+			</list>
+		</property>
+		<property name="confService" ref="configurationService"/>
+
+		<property name="tagsConfiguration">
+			<map>
+				<entry key="*">
+					<list>
+						<bean parent="formTag">
+							<property name="styleId" value="actionForm" />
+							<property name="layout" value="false"/>
+							<property name="validationProperties">
+								<props>						
+									<prop key="validationType">CLIENT</prop>
+									<prop key="validatorName">traces</prop>
+								</props>
+							</property>
+						</bean>
+						<bean parent="selectFieldTag">					
+							<property name="styleId" value="fitxerTraces.aplicacio.id"/>
+							<property name="mode" value="E,E,E"/>
+							<property name="optionsListName" value="aplicacionsList"/>
+						</bean>
+						<bean parent="textFieldTag">
+							<property name="styleId" value="dia" />
+							<property name="mode" value="E,E,E" />
+							<property name="showCalendar" value="true" />
+							<property name="layout" value="false"/>
+						</bean>
+						<bean parent="textFieldTag">
+							<property name="styleId" value="userId" />
+							<property name="mode" value="E,E,E" />
+							<property name="layout" value="false"/>
+						</bean>
+						<bean parent="textFieldTag">
+							<property name="styleId" value="missatge" />
+							<property name="mode" value="E,E,E" />
+							<property name="layout" value="false"/>
+						</bean>
+						<bean parent="selectFieldTag">
+							<property name="styleId" value="nivell" />
+							<property name="mode" value="E,E,E" />
+							<property name="optionsListName" value=""/>
+						</bean>
+						<bean class="net.gencat.ctti.canigo.services.web.struts.taglib.forms.fields.OptionsFieldTag">
+							<property name="styleId" value="nivellOptions"/>
+							<property name="i18nService" ref="i18nService"/>
+							<property name="validationService" ref="webValidationService"/>
+						</bean>
+						<bean parent="submitTag">
+							<property name="styleId" value="search" />
+							<property name="mode" value="D,D,D" />
+							<property name="reqCode" value="search" />
+							<property name="key" value="forms.buttons.search" />
+						</bean>
+					</list>
+				</entry>
+			</map>
+		</property>
+	</bean>
+</beans>

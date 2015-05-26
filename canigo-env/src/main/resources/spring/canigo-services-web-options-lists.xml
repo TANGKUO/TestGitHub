@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- Adapter for hibernate -->
+	<bean name="defaultOptionBaseHibernateAdapter"
+		class="net.mlw.vlh.adapter.hibernate3.Hibernate30Adapter">
+		<property name="sessionFactory" ref="sessionFactory"/>
+		<property name="defaultNumberPerPage" value="5"/>
+		<property name="defaultSortColumn" value="id"/>
+		<property name="defaultSortDirection" value="asc"/>
+		<property name="removeEmptyStrings" value="true"/>
+	</bean>
+			
+	<bean name="defaultOptionValueListHandler"
+		class="net.mlw.vlh.DefaultValueListHandlerImpl">
+		<property name="config.adapters">
+			<map>
+				<entry key="categoriesList">
+					<bean parent="defaultOptionBaseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.samples.prototip.model.Category
+								AS vo WHERE 1=1 
+								/~descn: AND vo.descn LIKE {descn} ~/ 
+								/~sortColumn: ORDER BY vo.[sortColumn] [sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>
+				
+				<entry key="animalsList">
+					<bean parent="defaultOptionBaseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.samples.prototip.model.Product
+								AS vo WHERE 1=1 
+								/~name: AND vo.name LIKE {name} ~/ 
+								/~category: AND vo.category.id LIKE {category} ~/ 
+								/~sortColumn: ORDER	BY vo.[sortColumn] [sortDirection]~/
+							</value>
+						</property>
+					</bean>
+				</entry>				
+				
+				<entry key="groupsList">
+					<bean parent="defaultOptionBaseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.services.security.model.PartyGroup
+								AS vo WHERE 1=1 
+								ORDER BY vo.name ASC
+							</value>
+						</property>
+					</bean>
+				</entry>
+				<entry key="rolesList">
+					<bean parent="defaultOptionBaseHibernateAdapter">
+						<property name="hql">
+							<value>
+								FROM
+								net.gencat.ctti.canigo.services.security.model.Role
+								AS vo WHERE 1=1 
+								ORDER	BY vo.name ASC
+							</value>
+						</property>
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
+
+	
+	<bean id="defaultOptionValueListHandlerHelper"
+		class="net.mlw.vlh.web.mvc.ValueListHandlerHelper">
+		<property name="valueListHandler">
+			<ref bean="defaultOptionValueListHandler" />
+		</property>
+	</bean>
+	
+		
+	<bean name="defaultOptionListSource"
+		class="net.gencat.ctti.canigo.services.web.taglib.util.options.vlh.hibernate3.VlhOptionListSourceImpl">
+		<property name="valueListHandlerHelper">
+			<ref bean="defaultOptionValueListHandlerHelper" />
+		</property>
+	</bean>
+	
+
+	<bean name="autocompleteService"
+		class="net.gencat.ctti.canigo.services.web.taglib.util.autocomplete.AutocompleteServiceBase">
+				
+		<property name="optionsService">
+			<ref bean="optionsListService" />
+		</property>
+		
+		<property name="loggingService">
+			<ref bean="loggingService" />
+		</property>		
+		
+	</bean>
+
+	
+	<!--  Definition of different options lists used from DWR  -->
+	<bean id="categoriesOptionListSource" parent="defaultOptionListSource">
+ 		<property name="optionListName" value="categoriesList"/>
+   		<property name="optionLabelName" value="name"/>
+   		<property name="optionLabelProperty" value="id"/>    									
+	</bean>
+
+	<bean id="animalsOptionListSource" parent="defaultOptionListSource">
+ 		<property name="optionListName" value="animalsList"/>
+   		<property name="optionLabelName" value="name"/>
+   		<property name="optionLabelProperty" value="id"/>    									
+	</bean>
+	
+	<bean id="groupsOptionListSource" parent="defaultOptionListSource">
+ 		<property name="optionListName" value="groupsList"/>
+   		<property name="optionLabelName" value="name"/>
+   		<property name="optionLabelProperty" value="id"/>    									
+	</bean>
+	
+	<bean id="rolesOptionListSource" parent="defaultOptionListSource">
+ 		<property name="optionListName" value="rolesList"/>
+   		<property name="optionLabelName" value="name"/>
+   		<property name="optionLabelProperty" value="id"/>    									
+	</bean>
+	
+	<bean id="optionsListService" class="net.gencat.ctti.canigo.services.web.taglib.util.options.OptionsListServiceBase">
+		<property name="optionsListSources">
+			<map>
+				<entry key="categoriesList"><ref bean="categoriesOptionListSource"/></entry>				
+				<entry key="animalsList"><ref bean="animalsOptionListSource"/></entry>				
+				<entry key="groupsList"><ref bean="groupsOptionListSource"/></entry>
+				<entry key="rolesList"><ref bean="rolesOptionListSource"/></entry>
+			</map>
+		</property>	
+	</bean>
+	
+</beans>

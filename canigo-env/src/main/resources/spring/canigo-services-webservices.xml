@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+	<bean abstract="true" id="importedInterfaceDefinition" class="net.gencat.ctti.canigo.services.webservices.impl.ImportedInterfaceImpl"/>
+    
+	
+    <bean name="webServicesService" class="net.gencat.ctti.canigo.services.webservices.impl.WebServicesServiceImpl">
+		 <property name="importedInterfaces">
+		    <list>
+		        <bean parent="importedInterfaceDefinition">				
+			    	<property name="name" value="geoNamesService" />			
+			    	<property name="serviceURL"	value="http://localhost:9080/canigo-samples-geo/geoService"/>
+					<property name="localInterface"	value="net.gencat.ctti.samples.geo.GeoNamesService" />	
+				</bean>
+		    
+      		</list>
+	 	</property>
+	</bean>
+			
+	<bean id="geoNamesService" factory-bean="webServicesService"
+	      factory-method="getWebService">
+		  <constructor-arg><value>geoNamesService</value></constructor-arg>
+	</bean>
+	
+</beans>

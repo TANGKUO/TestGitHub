@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE dwr PUBLIC
+  "-//GetAhead Limited//DTD Direct Web Remoting 1.0//EN"
+  "http://www.getahead.ltd.uk/dwr/dwr10.dtd">
+
+
+<dwr>
+  <allow>
+  
+    <create creator="new" javascript="JDate">
+      <param name="class" value="java.util.Date"/>
+    </create>
+    
+    <create creator="new" javascript="ArrayList">
+      <param name="class" value="java.util.ArrayList"/>
+    </create>
+
+    <create creator="new" javascript="Errors">
+	  <param name="class" value="org.springframework.validation.Errors"/>
+	</create>
+
+
+    <create creator="new" javascript="FieldError">
+	  <param name="class" value="org.springframework.validation.FieldError"/>
+	</create>
+	
+    
+    <create creator="spring" javascript="validationService">
+    	<param name="beanName" value="validationService"/>
+	</create>
+	
+	<create creator="spring" javascript="webValidationService">
+    	<param name="beanName" value="webValidationService"/>
+	</create>
+
+	<create creator="spring" javascript="webOptionsListService">
+    	<param name="beanName" value="optionsListService"/>
+	</create>
+
+	<create creator="new" javascript="account" scope="request">
+	  <param name="class" value="net.gencat.ctti.canigo.samples.prototip.model.Account"/>
+	</create>
+
+	<convert converter="bean" match="org.springframework.validation.*"/>
+	<convert converter="bean" match="java.util.ArrayList"/>
+	<!-- 
+    <convert converter="bean" match="java.lang.Object"/>
+    
+    -->
+    <!-- 
+    <create creator="new" javascript="Demo">
+      <param name="class" value="your.java.Bean"/>
+    </create>
+    -->
+  </allow>
+</dwr> 

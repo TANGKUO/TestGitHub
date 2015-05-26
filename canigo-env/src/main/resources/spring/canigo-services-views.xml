@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="itemsWordView" class="net.gencat.ctti.canigo.samples.prototip.ole.views.ItemsWordView">
+		<property name="beanName" value="net.gencat.ctti.canigo.samples.prototip.model.Item"/>
+		<property name="beanList" value="itemList"/>
+		<property name="url" value="classpath:ole/template.doc"/>
+		<property name="logService" ref="loggingService"/>
+	</bean>
+	<bean id="itemsReportView" class="net.gencat.ctti.canigo.services.reporting.impl.WrapperJasperMultiFormatView">
+		<property name="url" value="classpath:reports/itemsReport.jrxml"/>
+	</bean>
+	<bean id="categoriesReportView" class="net.gencat.ctti.canigo.services.reporting.impl.WrapperJasperMultiFormatView">
+		<property name="url" value="classpath:reports/categoriesReport.jrxml"/>
+		<property name="reportDataKey" value="category"/>
+		<property name="subReportUrls">
+			<map>
+      			<entry key="productsSubreport" value="classpath:reports/productsReport.jrxml"/>
+        	</map>
+		</property>
+		<property name="subReportDataKeys">
+			<list>
+				<value>products</value>
+			</list>
+		</property>
+	</bean>
+</beans>

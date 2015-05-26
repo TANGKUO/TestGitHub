@@ -1,0 +1,4 @@
+fileUploadService.maxAttachmentSize=1024
+uploadResolver.maxUploadSize=1000000
+uploadResolver.maxInMemorySize=10000000
+uploadResolver.defaultEncoding=ISO-8859-1

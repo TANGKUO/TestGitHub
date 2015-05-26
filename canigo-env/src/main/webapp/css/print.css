@@ -1,0 +1,18 @@
+* html .minwidth {border-left:0 !important; } 
+* html .container {margin-left:0 !important;}
+
+#capcalera{display:none;}
+
+#bloc_esquerra_petit{display:none;}
+#bloc_dreta_gran{width:100% !important;}
+#peu{display:none;}
+#impacte{display:none;}
+#menu_esquerra{display:none;}
+#directe_a{display:none;}
+#destaquem{display:none;}
+.destacats{display:none;}
+#unsel{display:none;}
+
+#contingut{margin-left:0 !important; width:100%!important;}
+.cos{width:100%!important;}
+

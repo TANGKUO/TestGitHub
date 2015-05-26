@@ -1,0 +1,16 @@
+/*
+ * ,m6Y=,:.gM##Od###a,:?"DGK   Generalitat de Catalunya
+ * .#J=.dNJ7M#F` H#P!JMx,T?b
+ * J1!.M##  M#F  #Hr ,##N,iW
+ * J!d3H##  M#F  ##r ,##L4,?   Centre de Telecomunicacions
+ *  .t\d##` M#F  ##r ,#H:lH,   i Tecnologies de la Informació (CTTI)
+ * .#` d##  MHF` #Hr ,##:,,b
+ * .Fr d##  M#F  ##r ,#H: cN   http://www.gencat.net/
+ * ,F\ d##  M#F  ##r ,##: l#
+ * .Nj d##  M#F` #Hr ,##:.+F
+ *  Xc;d##` MHF  ##r ,##:2d!   Aquest codi és propietat de la Generalitat de
+ * ,.W,d##  M#F  ##r ,##2J$.   Catalunya. La seva distribució està prohibida
+ * JJ,4H##  M#F` ##r`,##d3`J   sense el seu consentiment
+ * ,N..?M#1.M#F  #HL.w#Y...F
+ * .@Ja,:,TWM##1O##NT".?.sJK   2006, Tots els drets reservats
+ */

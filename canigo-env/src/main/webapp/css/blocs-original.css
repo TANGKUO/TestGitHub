@@ -1,0 +1,191 @@
+#marc{ position:relative; /*min-width: 640px;*/ width: 99%; margin: 0 0; padding: 0; font-size:.7em;  background-color:#fff !important;}
+
+
+
+
+@media screen,projection,print {
+/* imitació del min-width per IE */
+* html .minwidth {border-left:640px dashed #fff; position:relative; float:left; z-index:1; background-color:#fff !important;}
+* html .container {margin-left:-640px; position:relative; float:left; z-index:2;background-color:#fff !important; }
+	
+/* BLOCS PRINCIPALS */
+
+/* configuració esquerra ample, dreta estret*/
+
+div#bloc_esquerra{ 
+	/*margin: 6px 208px 0 0;
+	float:none;*/
+	float:left;
+	width:72%;
+	padding-top: 0;
+}
+
+div#bloc_dreta{
+	/*float:right;*/
+	/*width: 200px;*/
+	width: 27%;
+	margin: 0px 0px 0 auto;
+}
+
+/* configuració esquerra estret, dreta ample */
+
+div#bloc_esquerra_petit{
+	/*width: 215px;*/
+	/*margin: 4px 0px 0 0;*/
+	float:left;
+	clear:none;
+	width: 22%;
+	/*border:1px solid #ff0;*/
+}
+
+div#bloc_dreta_gran{
+	width:76%;
+	margin: 0 0 0 auto;
+	/*border:1px solid #f00;*/
+}
+
+div#bloc_central{
+	clear:both;
+	width: 100%;
+	padding: 3px 0 10px 0;
+	margin: 0;
+}
+
+
+/*-------------------------------- ESQUERRA --------------------------------*/ 
+
+div.bloc_superior{  /* bloc superior (HOME) */ 
+	width: 99%;
+	margin-top:5px;
+}
+
+div.bloc_superior div.menu_superior{ /* menú superior (HOME) */
+	float:left;
+	width: 100%;
+	margin:0; padding:0;
+	margin-bottom: 1px;
+	border-bottom: 2px solid #BF2F14;
+}
+
+div.bloc_superior div.menu_superior ul{/* (HOME) */ 
+	margin: 0; padding: 0;
+	font-weight:bold;
+	list-style-type: none;
+	width: 100%;
+	text-align: center;
+	clear:left;
+}
+
+div.bloc_superior div.menu_superior ul li{ display:block; float:left; width: 24.999%; margin-left:0;}
+
+div.bloc_superior div.menu_superior ul li.primer{ margin-left:-1px; }
+
+div.bloc_superior div.menu_superior ul li a{ 
+	display:block; background: #bbb url("../img2/bg_menu_home.gif") right top no-repeat;
+	color: #fff;	font-size: 13px;	padding: .2em 0 .2em 0; }
+	
+div.bloc_superior div.menu_superior ul li a.ultim{ background: #bbb url("../img2/bg_menu_home_ultim.gif") right top no-repeat !important;}
+
+div.bloc_superior div.menu_superior ul li a:hover{ 	text-decoration:none !important; background: #bbb  url("../img2/bg_menu_home_sel.gif") right top no-repeat; }
+
+div.bloc_superior div.menu_superior ul li a.ultim:hover{ background: #bbb url("../img2/bg_menu_home_sel_ultim.gif") right top no-repeat !important;}
+
+/* FI bloc superior HOME */
+
+div.imatge_impacte{ /* imatge impacte */
+	width:100%;
+	height:162px;
+	clear:both;
+	overflow: hidden;
+}
+
+div.imatge_impacte_petita{ /* imatge impacte */
+	width:100%;
+	height:100px;
+	margin-top: 0px;
+	overflow: hidden;
+}
+
+div.imatge_impacte_fons{background: url(../img2/banners/generic.jpg) repeat-x;}
+
+div#bloc_esquerra div.bloc_inferior{ /* bloc inferior */
+	width: 99%;
+	margin-top: 3px;
+	/*border:1px solid #0f0;*/
+}
+
+/* CONTINGUT - cos */
+
+div#bloc_esquerra div.bloc_inferior div#contingut{ 
+	margin-left: 254px;
+	margin-right: 0px;
+	border:1px solid #fff;
+}
+
+div#bloc_esquerra div.bloc_inferior div#menu_esquerra{ /* menú esquerra */
+	float:left;
+	width: 245px;
+	margin-top: 11px;
+}
+
+/* -------------------------------- DRETA -------------------------------- */ 
+div#cercador{ /*float:left;*/ width:100%;}
+#bloc_dreta>div#cercador{ margin-top: 5px;}
+
+ul.destacat{ margin:0; list-style-type:none; padding:0; }
+
+div.destacats{ /* destacats */
+	float:left;
+	position:relative;
+	margin:0;
+	text-align: center;
+	width:100%;
+}
+
+div.destacats .destacat, ul.destacat li{
+	float:left;
+	position:relative;
+	clear:both;
+	width:99%;
+	margin: 0;
+	padding: 5px 0 5px 0;
+	border-top: 1px solid #C8C7C6;
+	text-align: left;
+	line-height: 1.5em;
+}
+
+
+div.destacats .destacat {
+	border-top: none;
+	padding: 5px 0 0 0;
+}
+
+div.destacats p{
+	height:60px;
+	line-height: 1.5em;
+}
+
+div.destacats .destacat img{
+	float:left;
+	margin: 0 5px 0 0;
+	padding: 0;
+    border: 1px solid #c8c7c6;
+}
+
+div.destacats .destacat img.abs{
+	position:absolute;
+    border: 1px solid #818181;
+	margin: 0 auto 0 auto;
+}
+
+/* COLUMNES */
+
+/* 3 cols */
+.col_1, .col_2, .col_3{ width: 30%; float:left;}
+.col_2, .col_3 { margin-left: 3%;}
+
+/* 2 cols */
+.col_a, .col_b{ width: 45%; float:left;}
+.col_b{ margin-left: 48%; float:none;}
+
+}

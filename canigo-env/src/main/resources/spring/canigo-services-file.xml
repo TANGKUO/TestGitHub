@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="fileSystemService"
+		class="net.gencat.ctti.canigo.services.file.support.FileSystemServiceCommonsImpl"
+		lazy-init="true" 
+		singleton="true"/>
+
+	<bean id="fileNamingService"
+		class="net.gencat.ctti.canigo.services.file.support.FileNamingServiceCommonsImpl" 
+		lazy-init="true" 
+		singleton="true"/>
+		
+	<bean id="ioService"
+		class="net.gencat.ctti.canigo.services.file.support.IOServiceCommonsImpl"
+		lazy-init="true" 
+		singleton="true"/>
+</beans>

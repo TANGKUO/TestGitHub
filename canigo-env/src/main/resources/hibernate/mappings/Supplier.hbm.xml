@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="net.gencat.ctti.canigo.samples.prototip.model">
+	<class
+		name="Supplier"
+		table="SUPPLIER"
+	>
+		<id
+			name="id"
+			type="integer"
+			column="SUPPID"
+		>
+			<generator class="assigned"/>
+		</id>
+
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="status"
+			column="STATUS"
+			type="string"
+			not-null="true"
+			length="2"
+		/>
+		<property
+			name="addr1"
+			column="ADDR1"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="addr2"
+			column="ADDR2"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="city"
+			column="CITY"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="state"
+			column="STATE"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="zip"
+			column="ZIP"
+			type="string"
+			not-null="false"
+			length="5"
+		/>
+		<property
+			name="phone"
+			column="PHONE"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+
+		<set
+			inverse="true"
+			lazy="true"
+			name="items"
+		>
+			<key column="SUPPID" />
+			<one-to-many class="Item" />
+		</set>
+
+
+
+	</class>	
+</hibernate-mapping>

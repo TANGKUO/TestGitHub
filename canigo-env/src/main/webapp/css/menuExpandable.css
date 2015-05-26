@@ -1,0 +1,74 @@
+.menubar { color: #AC2115; font-size:1.15em;}
+
+#menuDiv {
+  color: #000;
+  width: 230px;
+  
+}
+
+#menuList {
+  list-style-position: inside; margin:0px;  padding: 0px;background:  url("../images/separador_ligero.gif") left bottom repeat-x;
+  
+}
+
+ul#menuList a.actuator, ul#menuList>li.menubar>ul.menu>li>a {
+	font-family: Verdana;
+	font-weight: bold;
+	color: #4D4D4D;	
+}
+
+ul#menuList>li.menubar {
+	
+  background:  url("../images/separador_ligero.gif") left top repeat-x;
+  font-size: 1em;
+  line-height: 1.5em;
+  text-align: left;
+  list-style-type: none;
+  list-style-image: url("../images/bullet_menu_gris.gif");
+  padding-left: 8px !important;
+}
+
+.menu, .submenu {
+  display: none;
+  margin-left: 15px;
+  padding: 0px;
+}
+
+a.actuator, a.standalone {
+  background-color: transparent;
+  text-decoration: none;
+/*  padding-left: 40px !important;*/
+}
+
+.menu li a, .submenu li a {
+  background-color: transparent;
+  color: #4D4D4D;  
+  padding-left: 0px;
+  text-decoration: none;
+
+}
+
+.submenu li {
+	list-style-type: none;
+	list-style-image: 	url(../images/guio.gif) !important;
+	padding-left:15px !important;
+}
+
+.menu li {
+	list-style-type: none;
+	list-style-image: url(../images/bullet_menu_gris.gif);
+}	
+
+.submenu li a:hover{
+  text-decoration: underline;
+  font-weight: bold;
+  color: #4D4C4B;
+}
+
+
+li a.base, li a.base:visited {
+  background-color: transparent;
+  color: #000;
+  padding-left: 0px;
+  text-decoration: none;
+}

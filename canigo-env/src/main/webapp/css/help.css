@@ -1,0 +1,72 @@
+/* CSS Document */
+
+/* Nicetitle Style */
+a.tooltip { 
+  font-size: 1em;  
+  text-align: right;
+  /*color: #3C7299*/
+}
+
+a.tooltip:link {text-decoration: underline; color:#FFFF}
+a.tooltip:visited {text-decoration underline;color:#FFFF }
+a.tooltip:hover {text-decoration: underline; cursor:help; color:#FFFF}
+a.tooltip:active {color:#FFFF}
+
+
+div.niceTitle
+{
+  	cursor:help;
+
+	font-weight: bold;
+	font-size: 1em;
+	font-family: "Trebuchet MS", sans-serif;
+	width: 250px;
+	left: 0;
+	top: 0;
+	padding: 0px;
+	position: absolute;
+	text-align: left;
+	z-index: 20;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=95);
+	-moz-opacity: .95;
+	-khtml-opacity: .95;
+	opacity: .95;
+	background-color: #FFFFDD;
+	border: 1px solid #333366;
+	
+}
+
+
+div.niceTitle .caption {
+	font-family: Verdana, Helvetica;
+	font-size: 10px;
+	font-weight: bold;
+	color: #000000;	
+	margin-left:2px;
+}
+
+div.niceTitle .contents
+{
+	background-color: #FFFFDD;
+	margin: 0;
+	padding: 0 3px;
+	filter: progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	-khtml-opacity: 1;
+	opacity: 1;
+}
+
+
+div.niceTitle p
+{
+	color: #000000;
+	font-size: 1em;
+	padding: 3px 0 0 0;
+	margin: 0;
+	text-align: left;
+	-moz-opacity: 1;
+}
+
+ul.help {
+  color: #000000;  
+}

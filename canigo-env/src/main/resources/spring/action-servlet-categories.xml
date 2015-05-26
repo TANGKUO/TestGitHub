@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+	<!--  Category BO Target -->
+	<bean id="categoryBOTarget" class="net.gencat.ctti.canigo.samples.prototip.model.bo.impl.CategoryBOImpl">
+		<property name="dao" ref="universalHibernateDAO"/>
+	</bean>	
+
+
+	<!-- categories -->
+	
+	<bean name="/categories"
+		class="net.gencat.ctti.canigo.samples.prototip.struts.action.CategoryAction">
+		<property name="logService" ref="loggingService"/>
+		<property name="serializationService" ref="xmlSerializationService"/>
+		<property name="pojoClass"
+			value="net.gencat.ctti.canigo.samples.prototip.model.Category" />
+		<property name="bo" >
+			<bean parent="baseDaoProxy">
+				<property name="target"><ref bean="categoryBOTarget"/></property>
+			</bean>
+		</property>
+		<property name="webValidationSubmit" ref="webValidationSubmit"/>
+		<property name="metodosList">
+		<list>
+		   <value>save</value>
+		</list>
+		</property>
+		<property name="valueListActionHelper">
+			<bean parent="valueListActionHelper">
+				<property name="listName"><value>categoriesList</value></property>
+				<property name="tableId" value="CATEGORY"/>
+			</bean>
+		</property>
+		<property name="tagsConfiguration">
+			<map>
+			<entry key="*">
+				<list>
+				
+					<bean parent="formTag">
+						<property name="styleId" value="actionForm"/>
+						<property name="layout" value="false"/>			
+						<!-- property name="validationProperties">
+							<props>							
+								<prop key="validationType">SERVER</prop>
+							</props-->
+							
+							<!--  props>						
+								<prop key="validationType">CLIENT</prop>
+								<prop key="validatorName">category</prop>
+							</props-->
+						<!-- /property-->
+				     </bean>
+					
+				    <bean parent="labelTag">
+						<property name="styleId" value="nameLabel"/>
+					</bean>
+					<bean parent="dirtyFormWarningTag">
+						<property name="styleId" value="formWarning"/>
+					</bean>
+					<bean parent="searchPanelTag">
+						<property name="styleId" value="searchPanel"/>
+					</bean>
+					<bean parent="textFieldTag">
+						<property name="styleId" value="id"/>
+<!--						<property name="key" value="category.id"/>-->
+						<property name="autoTab" value="true"/>
+						<property name="mode" value="E,I,I"/>
+						<property name="layout" value="false"/>	
+					</bean>
+
+					<bean parent="textFieldTag">
+						<property name="styleId" value="descn"/>
+<!--						<property name="key" value="category.descn"/>-->
+						<!-- property name="accesskey" value="category.descn.accessKey"/-->
+						<property name="mode" value="E,E,E"/>
+						<property name="layout" value="false"/>	
+					</bean>					
+					<bean parent="textFieldTag">
+						<property name="styleId" value="name"/><!--
+						<property name="key" value="category.name"/>
+						--><property name="mode" value="E,E,I"/>
+						<property name="layout" value="false"/>	
+					</bean>
+					<bean parent="submitTag">
+						<property name="styleId" value="saveActionImage"/>										
+						<property name="mode" value="N,D,N"/>					
+						<property name="reqCode" value="save"/>									
+						<property name="key" value="forms.buttons.save"/>														
+					</bean>		
+					<bean parent="submitTag">
+						<property name="styleId" value="saveNewActionImage"/>										
+						<property name="mode" value="D,N,N"/>
+						<property name="reqCode" value="saveNew"/>										
+						<property name="key" value="forms.buttons.saveNew"/>																								
+					</bean>	
+					<bean parent="submitTag">
+						<property name="styleId" value="cercar"/>										
+						<property name="mode" value="D,D,D"/>
+						<property name="reqCode" value="search"/>										
+						<property name="key" value="jsp.categories.category.botoCercar"/>																								
+					</bean>	
+					<bean parent="submitTag">
+						<property name="styleId" value="cancelar"/>										
+						<property name="mode" value="D,D,D"/>
+						<property name="reqCode" value="search"/>										
+						<property name="key" value="jsp.categories.category.botoCancelar"/>																								
+					</bean>	   
+					<bean parent="selectFieldTag">
+						<property name="mode" value="E,E,E" />
+						<property name="styleId" value="desdeSelect" />
+						<property name="optionsListService"	ref="optionsListService" />
+						<property name="optionsListName" value="animalsList" />
+					</bean>
+					<bean parent="selectFieldTag">
+						<property name="mode" value="E,E,E" />
+						<property name="styleId" value="hastaSelect" />
+						<property name="optionsListService"	ref="optionsListService" />
+						<property name="optionsListName" value="categoriesList" />
+					</bean>
+				</list>
+			</entry>
+			</map>
+		</property>
+	</bean>
+	
+</beans>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="net.gencat.ctti.canigo.samples.prototip.model">
+	<class
+		name="Item"
+		table="ITEM"
+	>
+		<id
+			name="id"
+			type="string"
+			column="ITEMID"
+		>
+			<generator class="assigned"/>
+		</id>
+
+		<property
+			name="listprice"
+			column="LISTPRICE"
+			type="big_decimal"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="unitcost"
+			column="UNITCOST"
+			type="big_decimal"
+			not-null="false"
+			length="10"
+		/>
+		<property
+			name="status"
+			column="STATUS"
+			type="string"
+			not-null="false"
+			length="2"
+		/>
+		<property
+			name="attr1"
+			column="ATTR1"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="attr2"
+			column="ATTR2"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="attr3"
+			column="ATTR3"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="attr4"
+			column="ATTR4"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="attr5"
+			column="ATTR5"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<many-to-one
+			name="supplier"
+			column="SUPPLIER"
+			class="Supplier"
+			not-null="false"
+		>
+		</many-to-one>
+		<many-to-one
+			name="productid"
+			column="PRODUCTID"
+			class="Product"
+			not-null="true"
+		>
+		</many-to-one>
+
+
+	</class>	
+</hibernate-mapping>

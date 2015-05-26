@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+			/WEB-INF/classes/spring/applicationContext.xml
+			/WEB-INF/classes/spring/action-servlet.xml
+		</param-value>
+	</context-param>
+	<!-- Define the basename for a resource bundle for I18N.
+		 Otherwhise, must define fmt:setBundle in each jsp -->
+	<context-param>
+	    <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+	    <param-value>i18n/applicationResources</param-value>
+	</context-param>
+	
+	<filter>
+		<filter-name>Struts Locale Filter</filter-name>
+		<filter-class>
+			net.gencat.ctti.canigo.services.web.i18n.StrutsLocaleFilter
+		</filter-class>
+	</filter>
+	<filter>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<filter-class>
+			net.gencat.ctti.canigo.services.web.i18n.JSTLLocaleFilter
+		</filter-class>
+	</filter>
+
+	<!-- Filter ACEGI, using a FilterChainProxy makes it easier to configure 
+		different Filters in the Spring application context configuration file-->
+	<filter>
+		<filter-name>Acegi Filter Chain Proxy</filter-name>
+		<filter-class>
+			net.sf.acegisecurity.util.FilterToBeanProxy
+		</filter-class>
+		<init-param>
+			<param-name>targetClass</param-name>
+			<param-value>
+				net.sf.acegisecurity.util.FilterChainProxy
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>init</param-name>
+			<param-value>lazy</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>Struts Menu Permissions Adapter</filter-name>
+		<filter-class>
+			net.gencat.ctti.canigo.samples.prototip.struts.menu.AcegiPermissionsFilter
+		</filter-class>
+	</filter>
+	<filter>
+		<filter-name>UrlRewriteFilter</filter-name>
+		<filter-class>
+			net.gencat.ctti.canigo.services.web.filter.urlrewrite.UrlRewriteFilter
+		</filter-class>
+		<init-param>
+			<param-name>logLevel</param-name>
+			<param-value>LOG4J</param-value>
+		</init-param>
+	</filter>
+	<filter>
+		<filter-name>Https Filter</filter-name>
+		<filter-class>
+			net.gencat.ctti.canigo.services.web.filter.HttpRequestWrapperFilter
+		</filter-class>
+	</filter>
+	
+	<!-- Filter mappings -->
+	<!--<filter-mapping>
+		<filter-name>Https Filter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Https Filter</filter-name>
+		<url-pattern>/AppJava/j_acegi_security_check</url-pattern>
+	</filter-mapping>
+	--><filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>*.doc</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>*.report</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>*.pdf</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Locale Filter</filter-name>
+		<url-pattern>*.xls</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>*.doc</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>*.report</url-pattern>
+	</filter-mapping>	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>*.pdf</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>JSTL Locale Filter</filter-name>
+		<url-pattern>*.xls</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Acegi Filter Chain Proxy</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+		<filter-name>Struts Menu Permissions Adapter</filter-name>
+		<url-pattern>*.do</url-pattern>
+	</filter-mapping>
+	<filter-mapping>
+	  <filter-name>UrlRewriteFilter</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+
+	<!--
+		- Loads the root application context of this web app at startup,
+		- by default from "/WEB-INF/applicationContext.xml".
+		- Note that it is preferable to use ContextLoaderListener in a servlet container
+		- that follows the Servlet 2.4 initialization order (most Servlet 2.3 containers do).
+		-
+		- Use WebApplicationContextUtils.getWebApplicationContext(servletContext)
+		- to access it anywhere in the web application, outside of the framework.
+		-
+		- The root context is the parent of all servlet-specific contexts.
+		- This means that its beans are automatically available in these child contexts,
+		- both for getBean(name) calls and (external) bean references.
+
+		Servlet 2.3 containers known to work with bootstrap listeners are:
+		
+		    * Apache Tomcat 4.x+
+		    * Jetty 4.x+
+		    * Resin 2.1.8+
+		    * Orion 2.0.2+
+		    * BEA WebLogic 8.1 SP3 
+		
+		For working with any of them, ContextLoaderListener is recommended.
+		
+		Servlet 2.3 containers known not to work with bootstrap listeners are:
+		
+		    * BEA WebLogic up to 8.1 SP2
+		    * IBM WebSphere 5.x
+		    * Oracle OC4J 9.0.3 
+
+	-->
+	<!-- For use with Servlet 2.4 -->
+	<!-- listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			net.gencat.ctti.canigo.services.web.context.AspectWerkzContextListener
+		</listener-class>
+	</listener-->
+	<!-- END Servlet 2.4 -->
+	<!-- For use with Servlet 2.3 -->
+	<servlet>
+		<servlet-name>init-spring</servlet-name>
+		<servlet-class>
+			org.springframework.web.context.ContextLoaderServlet
+		</servlet-class>
+		<!-- init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/classes/spring/applicationContext.xml
+				/WEB-INF/classes/spring/action-servlet.xml
+			</param-value>
+		</init-param -->
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet>
+		<servlet-name>init-aop</servlet-name>
+		<servlet-class>
+			net.gencat.ctti.canigo.services.web.context.AspectWerkzContextLoaderServlet
+		</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<!-- END Servlet 2.3 -->
+	<servlet>
+		<servlet-name>petstore</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>
+				/WEB-INF/classes/spring/prototip-servlet.xml
+			</param-value>
+		</init-param>
+		<load-on-startup>3</load-on-startup>
+	</servlet>
+
+	<!--  DWR SERVLET -->
+
+	<servlet>
+		<servlet-name>dwr-invoker</servlet-name>
+		<display-name>DWR Servlet</display-name>
+		<servlet-class>uk.ltd.getahead.dwr.DWRServlet</servlet-class>
+		<init-param>
+			<param-name>debug</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<init-param>
+			<param-name>config</param-name>
+			<param-value>/WEB-INF/classes/dwr/dwr.xml</param-value>
+		</init-param>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>dwr-invoker</servlet-name>
+		<url-pattern>/dwr/*</url-pattern>
+	</servlet-mapping>
+	<!--
+		- Struts servlet that dispatches requests to registered actions.
+		- Reads its configuration from "struts-config.xml".
+		-
+		- A web app can just contain one such servlet.
+		- If you need multiple namespaces, use Struts' module mechanism.
+	-->
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.doc</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.report</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.xml</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.xls</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>petstore</servlet-name>
+		<url-pattern>*.pdf</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<!-- Redirects to "welcome.htm" for dispatcher handling -->
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+	<error-page>
+		<error-code>403</error-code>
+		<location>/pageerror.do</location>
+	</error-page>
+
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/struts-layout-1.2.7.tld</taglib-uri>
+		<taglib-location>
+			/WEB-INF/tld/struts-layout-1.2.7.tld
+		</taglib-location>
+	</taglib>
+	<taglib>
+		<taglib-uri>/WEB-INF/tld/valuelist.tld</taglib-uri>
+		<taglib-location>
+			/WEB-INF/tld/valuelist.tld
+		</taglib-location>
+	</taglib>
+</web-app>
+

@@ -1,0 +1,36 @@
+div#separador {
+	background: #4D4D4D;
+	height: 3px;
+}
+
+div#Dialog {
+	border-top: 1px solid #000;
+	text-align: center;
+	background: #fff;
+}
+div.Container {
+	width: 350px;
+	min-width: inherit;
+	border: 1px solid #000;
+}
+div#imatge {
+	padding: 2px 2px 2px 2px;
+	border-bottom: 1px solid #000;
+	text-align: left;
+}
+
+font.asterisc {
+	color:#FF8040;
+}
+
+input.botoLogin {
+	width: 37px;
+	background: #fff;
+	border: 1px solid #000;
+	text-align: center;
+	padding: 2px 2px 2px 2px;
+}
+
+input.textLogin {
+	border: 1px solid #000;
+}

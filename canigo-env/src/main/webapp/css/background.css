@@ -1,0 +1,18 @@
+.area_box {
+   background: #818181 url("../images/bg_pastillaareaa.gif") right top no-repeat; 
+   font-weight:bold;
+   color:#FFFFFF;   
+   height:1.4em;   
+   padding: 2px 1px 0 3px;
+}
+
+.striped_box {
+  float:left; width: 100%;
+  background-image: url("../images/bg_box.gif");	
+  margin-top: -1px; 
+  margin-bottom: 10px;  
+  padding: 5px 0 5px 1px;			
+  border: 1px dotted gray;		
+}
+	  
+  

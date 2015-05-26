@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<!-- 
+	Project: prototip
+	Description: Security Configuration
+-->
+
+<beans>
+
+	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+		<property name="jndiName" value="${dataSource.jndiName}"/>
+	</bean>
+			
+	<bean id="SACEAuthenticationConfiguration1"
+		class="net.gencat.ctti.canigo.services.security.SACEAuthenticationConfiguration">
+		
+		<property name="logService" ref="loggingService" />
+		<property name="urlSACE" value="https://sace.prepdc.gencat.intranet/SACE/SACE_Logon.aspx?XMLIn=" />
+		<property name="userNameFormat" value="NIF" />
+		<property name="httpsConfigBean" ref="httpsConfigBean" />
+		<!-- property name="certificates">
+			<props>
+				<prop key="ACC">classpath:certificates/PREPRODUCCIO EC-ACC_csrs.crt</prop>
+				<prop key="GENCAT">classpath:certificates/PREPRODUCCIO EC-GENCAT_csrs.crt</prop>
+				<prop key="SAFP">classpath:certificates/PREPRODUCCIO EC-SAFP_csrs.crt</prop>
+			</props>
+		</property-->
+		<property name="keyStore" value="classpath:keystore/DemoTrust.jks"/>
+		<property name="keyStorePassPhrase" value="DemoTrustKeyStorePassPhrase"/>
+	</bean>
+
+	<bean id="ldapAuthenticationConfiguration2"
+		class="net.gencat.ctti.canigo.services.security.LDAPAuthenticationConfiguration">
+		
+		<property name="authoritiesbyUserNameQuery" value="SELECT username,authority FROM authorities WHERE username = ?" />			
+		
+		<property name="ldapURL" value="ldap://localhost:389/dc=mycompany,dc=com" />
+		<property name="usernameFormat" value="uid={0},ou=people,dc=mycompany,dc=com" />
+		<property name="userLookupNameFormat" value="uid={0},ou=people" />
+	</bean>
+	
+	<bean id="databaseAuthenticationConfiguration3"
+		class="net.gencat.ctti.canigo.services.security.DatabaseAuthenticationConfiguration">
+
+		<property name="passwordEncoderClass"
+			value="net.sf.acegisecurity.providers.encoding.PlaintextPasswordEncoder" />
+	</bean>
+	
+	<bean id="authenticationConfiguration"
+		class="net.gencat.ctti.canigo.services.security.AuthenticationSecurityConfiguration">
+		<property name="filterProcessesUrl" value="/AppJava/j_acegi_security_check"/>
+		<property name="loginFormUrlValue" value="/AppJava/pagelogin.do" />
+		<property name="authenticationFailureUrlValue" value="/AppJava/pagelogin.do" />
+		
+		<property name="authenticationProvidersConfigurationList">
+			<list>
+				<!-- ref local="SACEAuthenticationConfiguration1" /-->
+				<!-- <ref local="ldapAuthenticationConfiguration2" /> -->
+				<ref local="databaseAuthenticationConfiguration3" />
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean id="authorizationConfiguration"
+		class="net.gencat.ctti.canigo.services.security.AuthorizationSecurityConfiguration">
+		<property name="rolesList">
+			<list>
+				<value>ROLE_ADMIN</value>
+				<value>ROLE_USER</value>
+			</list>
+		</property>
+<!--		<property name="aclsClassesList">-->
+<!--			<list>-->
+<!--				<value>net.gencat.ctti.canigo.samples.prototip.model.Account</value>-->
+<!--			</list>-->
+<!--		</property>-->
+<!--            <property name="secureBusinessObjects">-->
+<!--              <value>-->
+<!--               net.gencat.ctti.canigo.samples.prototip.struts.action.FileAction.upload = ROLE_ADMIN-->
+<!--               net.gencat.ctti.canigo.samples.prototip.model.bo.AccountBOImpl.saveOrUpdate = ROLE_ADMIN-->
+<!--              </value>-->
+<!--            </property>-->
+
+		<property name="secureUrls">
+			<value>			
+				/**/files.do = ROLE_ADMIN
+				/**/categories* = ROLE_ADMIN
+				/**/*.do* = ROLE_USER,ROLE_ADMIN
+				
+			</value>
+		</property>
+	</bean>
+
+	<import resource="classpath:/spring/acegi-beans.xml" />
+
+</beans>

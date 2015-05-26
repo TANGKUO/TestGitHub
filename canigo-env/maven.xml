@@ -1,0 +1,55 @@
+<project default="root" xmlns:j="jelly:core" xmlns:deploy="deploy"   xmlns:ant="jelly:ant" xmlns:maven="jelly:maven" xmlns:eclipse="eclipse" xmlns:war="jelly:war" xmlns:aspectwerkz="jelly:aspectwerkz" xmlns:u="jelly:util">
+<!-- -->
+
+  <goal name="ctti:generate-classpath-eclipse" 
+    description="Generate Eclipse .classpath file">
+  
+    <ant:echo>Creating ${basedir}/.classpath ...</ant:echo>                
+    <j:file name="${basedir}/.classpath" prettyPrint="true" outputMode="xml" xmlns="dummy">
+      <j:import file="${basedir}/classpath.jelly" inherit="true"/>    
+    </j:file>
+    
+  </goal>
+  <goal name="ctti:refresh-webapp" 
+    description="Generate Eclipse .classpath file">
+
+	<!-- Prepare file system -->
+	<ant:delete includeemptydirs="true" failonerror="false">
+    	<ant:fileset dir="${basedir}/target/${ctti.war.wtp.module}" includes="**/*"/>
+    	<ant:fileset dir="${basedir}/target/aspectwerkz" includes="**/*"/>
+	</ant:delete>
+	<ant:delete failonerror="false">
+    	<ant:fileset dir="${basedir}/.deployables/${ctti.war.wtp.module}/WEB-INF/lib"/>
+  	</ant:delete> 
+    <attainGoal name="ctti:generate-classpath-eclipse"/>  
+    <attainGoal name="war:webapp"/> 
+        
+    
+  	<ant:copy todir="${basedir}/.deployables/${ctti.war.wtp.module}/WEB-INF/lib">
+		<ant:fileset dir="${basedir}/target/${ctti.war.wtp.module}/WEB-INF/lib"/>  	
+  	</ant:copy>
+    <u:available file="${maven.aspectwerkz.definition.file.src}">
+	    <attainGoal name="aspectwerkz:weave"/>  
+    	<ant:echo>Moving file ${maven.aspectwerkz.weave.build.dir}/aop.xml to ${maven.aspectwerkz.weave.build.dir}/META-INF/aop.xml</ant:echo>
+		<ant:move failonerror="false" file="${maven.aspectwerkz.weave.build.dir}/aop.xml" tofile="${maven.aspectwerkz.weave.build.dir}/META-INF/aop.xml"/>
+	</u:available>
+  </goal>
+  
+  <goal name="ctti:refresh-libs">
+
+	<!-- Prepare file system -->
+	<ant:delete failonerror="false">
+    	<ant:fileset dir="${basedir}/.deployables/${ctti.war.wtp.module}/WEB-INF/lib"/>
+  	</ant:delete> 
+  	<ant:delete failonerror="false">
+    	<ant:fileset dir="${basedir}/target/${ctti.war.wtp.module}/WEB-INF/lib"/>
+  	</ant:delete>
+    <attainGoal name="war:webapp"/> 
+  	<ant:copy todir="${basedir}/.deployables/${ctti.war.wtp.module}/WEB-INF/lib">
+		<ant:fileset dir="${basedir}/target/${ctti.war.wtp.module}/WEB-INF/lib"/>  	
+  	</ant:copy>
+  </goal>
+	<goal name="ctti:war.war">
+		<attainGoal name="war:war"/> 
+	</goal>
+</project>

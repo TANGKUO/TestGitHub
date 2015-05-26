@@ -1,0 +1,135 @@
+@CHARSET "ISO-8859-1";
+
+table.classicLook th { /*background: #818181;*/
+	font-family: sans-serif;
+	font-size: 1em;
+	/*background-color: #818181;*/
+	color: #AC2115;
+	text-align: left;
+}
+
+table.classicLook th a {
+	color: #AC2115;
+}
+
+
+tr.rowstyle1 {
+	color: #000000;
+	background-color: #E7E6E4;
+	font-family: Arial;
+	font-size: 1em;
+}
+
+tr.rowstyle0{
+	color: #000000;
+	background: #FFFFFF;
+	font-family: Arial;
+	font-size: 1em;
+}
+
+td.rowstyle1 {
+	
+	border-left: #ffffff 1px solid;
+	border-right: #ffffff 1px solid;
+}
+
+td.rowstyle0{
+	
+	border-left: #ffffff 1px solid;
+	border-right: #ffffff 1px solid;
+}
+
+.rowstyle1-hover, .rowstyle1:hover {
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #818181;
+}
+
+.rowstyle0-hover,.rowstyle0:hover {
+	font-family: sans-serif;
+	font-size: 1em;
+	background: #818181;
+}
+
+
+th.sorted {
+	color: #818181;
+}
+
+th a:hover {
+	text-decoration: underline;
+	color: black;
+}
+
+th.sorted a,th.sortable a {
+	background-position: right;
+	display: block;
+	width: 100%;
+	color: #AC2115;
+}
+
+th.sortable a {
+	background-image: url(../images/arrow_off.png);
+	background-repeat: no-repeat;
+}
+
+th.sorted a {
+	color: #660303;
+}
+
+th.order1 a {
+	background-image: url(../images/arrow_down.png);
+	background-repeat: no-repeat;
+}
+
+th.order2 a {
+	background-image: url(../images/arrow_up.png);
+	background-repeat: no-repeat;
+}
+
+/* Info export */
+div.exportlinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 10px 0;
+	width: 100%;
+}
+
+div.exportlinks > a {
+	text-decoration: none;
+	color: #000000;
+}
+
+span.export {
+	padding: 0 4px 1px 20px;
+	display: inline;
+	display: inline-block;
+	cursor: pointer;
+}
+
+span.excel {
+	background-image: url(../images/ico_file_excel.png);
+	background-repeat: no-repeat;
+}
+
+span.csv {
+	background-image: url(../images/ico_file_csv.png);
+	background-repeat: no-repeat;
+}
+
+span.xml {
+	background-image: url(../images/ico_file_xml.png);
+	background-repeat: no-repeat;
+}
+
+span.pdf {
+	background-image: url(../images/ico_file_pdf.png);
+	background-repeat: no-repeat;
+}
+
+span.rtf {
+	background-image: url(../images/ico_file_rtf.png);
+	background-repeat: no-repeat;
+}
+

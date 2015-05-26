@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="myBusinessExceptionHandler"
+		class="net.gencat.ctti.canigo.samples.prototip.exceptions.handlers.MyBusinessExceptionHandler">
+		<property name="loggingService" ref="loggingService" />
+	</bean>
+	
+	<bean id="fileServiceHandler"
+		class="net.gencat.ctti.canigo.samples.prototip.exceptions.handlers.UnknowDirectoryExceptionHandler">
+		<property name="loggingService" ref="loggingService" />
+	</bean>
+	<bean id="adminUsersHandler"
+		class="net.gencat.ctti.canigo.services.security.exceptions.handlers.InvalidUsernameExceptionHandler">
+		<property name="loggingService" ref="loggingService" />
+	</bean>
+	<bean
+		id="net.gencat.ctti.canigo.services.exceptions.aop.aspectwerkz.ExceptionHandlerAspect"
+		class="net.gencat.ctti.canigo.services.exceptions.aop.aspectwerkz.ExceptionHandlerAspect"
+		singleton="false">
+		<property name="exceptionHandlers">
+			<map>
+				<entry key="net.gencat.ctti.canigo.samples.prototip.exceptions.UnknownDirectory">
+					<ref bean="fileServiceHandler" />
+				</entry>
+				<entry key="net.gencat.ctti.canigo.services.exceptions.BusinessException">
+					<ref bean="myBusinessExceptionHandler" />
+				</entry>
+				<entry key="net.gencat.ctti.canigo.samples.prototip.exceptions.InvalidUsernameException">
+					<ref bean="adminUsersHandler" />
+				</entry>
+				<entry key="net.sf.acegisecurity.AccessDeniedException">
+					<ref bean="myBusinessExceptionHandler" />
+				</entry>				
+			</map>
+		</property>
+	</bean>
+</beans>
+

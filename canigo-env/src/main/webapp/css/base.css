@@ -1,0 +1,19 @@
+/* CSS General */
+body {
+  margin:0px;	
+  padding: 3px 0 10px 0;	  
+  font-family: Verdana,Sans-Serif; 
+  font-size:68.75%;
+  color:#000; 
+  background-color:#fff;
+}
+
+body table {
+  font-size:1em;
+}
+
+img {
+  border:none;
+}
+
+

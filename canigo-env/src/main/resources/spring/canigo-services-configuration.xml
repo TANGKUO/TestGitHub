@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="configurationService" class="net.gencat.ctti.canigo.services.configuration.springframework.beans.factory.config.HostPropertyPlaceholderConfigurer">
+		<property name="basePropertyFiles">
+			<list>
+				<value>classpath:jdbc/jdbc.properties</value>
+				<value>classpath:mail/mail.properties</value>
+				<value>classpath:file/fileUploadService.properties</value>
+				<value>classpath:file/fileService.properties</value>
+				<value>classpath:https/https.properties</value>
+				<value>classpath:log4j/traces.properties</value>
+			</list>
+		</property>
+	</bean>
+</beans>

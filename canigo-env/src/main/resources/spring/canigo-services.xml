@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<import resource="canigo-services-configuration.xml"/>	
+	<import resource="canigo-services-logging.xml"/>	
+	<import resource="canigo-services-security.xml"/>	
+	<import resource="canigo-services-i18n.xml"/>
+	<import resource="canigo-services-validation.xml"/>		
+	<import resource="canigo-services-persistence.xml"/>	
+	<!--  Import Options Lists Definition -->
+	<import resource="canigo-services-web-options-lists.xml"/>
+	<import resource="canigo-services-web-lists.xml"/>	
+	
+	<import resource="canigo-services-web.xml"/>	
+	<import resource="canigo-services-exceptions.xml"/>	
+	<import resource="canigo-services-mailing.xml"/>
+	<import resource="canigo-services-fileupload.xml"/>
+	<import resource="canigo-services-file.xml"/>		
+	<import resource="canigo-services-scheduler.xml"/>	
+	<import resource="canigo-services-xml.xml"/>	
+	<import resource="canigo-services-ole.xml"/>	
+	<import resource="canigo-services-https.xml"/>		
+	
+</beans>

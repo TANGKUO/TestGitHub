@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<MenuConfig>
+
+  <Displayers>
+    <Displayer   name="dropDown"
+                 type="net.sf.navigator.displayer.DropDownMenuDisplayer"/>
+    <Displayer   name="simple"
+                 type="net.sf.navigator.displayer.SimpleMenuDisplayer"/>
+    <Displayer   name="coolMenu"
+                 type="net.sf.navigator.displayer.CoolMenuDisplayer"/>
+    <Displayer   name="coolMenu4"
+                 type="net.sf.navigator.displayer.CoolMenuDisplayer4"/>
+    <Displayer   name="menuForm"
+                 type="net.sf.navigator.example.PermissionsFormMenuDisplayer"/>
+    <Displayer   name="listMenu"
+                 type="net.sf.navigator.displayer.ListMenuDisplayer"/>
+    <Displayer   name="tabbedMenu"
+                 type="net.sf.navigator.displayer.TabbedMenuDisplayer"/>
+  </Displayers>
+
+  <Menus>
+    
+    <Menu name="homepage"  title="menu.homepage" width="140">
+    	<Item name="login" title="menu.login" location="pagelogin.do"/>
+    	<Item name="logoff" title="menu.logoff" location="pagelogoff.do"/>
+    </Menu>
+    
+
+    <Menu name="servicesMenu"  title="menu.services">
+	    <Item name="lists" title="menu.lists">
+		    <Item name="categories" title="menu.lists.categories" location="categories.do?reqCode=search" roles="ROLE_ADMIN" />
+	    	<Item name="traces" title="menu.traces" location="llistaTraces.do?reqCode=choose"/>
+	    </Item>
+    	<Item name="i18n" title="menu.i18n">
+    		<Item name="i18n_en_gb" title="menu.i18n.en_gb" location="javascript:change('en_GB')"/>
+    		<Item name="i18n_es_es" title="menu.i18n.es_es" location="javascript:change('es_ES')"/>
+    		<Item name="i18n_ca_es" title="menu.i18n.ca_es" location="javascript:change('ca_ES')"/>
+    	</Item>
+    </Menu>
+
+  </Menus>
+</MenuConfig>

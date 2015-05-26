@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<!-- SCHEDULER FACTORY BEAN DEFINITION -->
+	<!-- 
+	<bean class="net.gencat.ctti.canigo.services.scheduler.impl.quartz.SpringQuartzSchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="taskWriteTrigger"/>
+			</list>
+		</property>
+	</bean>
+	-->
+
+	<!-- TASKS DEFINITIONS -->
+	<!-- 
+	<bean id="taskWriteLog" class="net.gencat.ctti.canigo.samples.prototip.scheduler.TaskWriteLog"/>
+	<bean id="taskWriteDetail" class="net.gencat.ctti.canigo.services.scheduler.impl.quartz.SpringQuartzMethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="taskWriteLog"/>
+		<property name="targetMethod" value="writeLog"/>
+		<property name="concurrent" value="false"/>
+	</bean>
+	-->
+
+	<!-- TRIGGERS DEFINITIONS -->
+	<!-- 
+	<bean id="taskWriteTrigger" class="net.gencat.ctti.canigo.services.scheduler.impl.quartz.SpringQuartzSimpleTriggerBean">
+		<property name="jobDetail" ref="taskWriteDetail"/>
+		<property name="startDelay" value="10000"/>
+		<property name="repeatInterval" value="20000"/>
+	</bean>
+	-->
+</beans>

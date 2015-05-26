@@ -1,0 +1,43 @@
+.text_gris, .enllac_gris, .enllac_gris2,.titulocaja,
+a.butlletins, a.sms, a.pda, a.rss, a.premsa{color:#585854; font-weight:bold; text-decoration:none; line-height: 1.5em;}
+
+
+ul.border_sup, ul.border_sup_fletxa{ list-style-position: inside; margin:0; padding:0;background:  url("../images/separador_ligero.gif") left bottom repeat-x;}
+ul.border_sup li, ul.border_sup_fletxa li{ background:  url("../images/separador_ligero.gif") left top repeat-x ; 
+				  margin: 0 0 0 .2em; padding: 0 0 .2em 4px; list-style-image: url("../images/bullet_menu_int_.gif"); }
+
+ul.border_sup>li, ul.border_sup_fletxa>li{padding-left: 10px;}
+
+ul.border_sup li.desplegat{list-style-image: url("../images/bullet_down_gris.gif");}
+ul.border_sup li.seleccionat a, ul.border_sup li.desplegat_seleccionat a{color:#AC2115 !important;}
+ul.border_sup li.desplegat_seleccionat li a{color:#4D4C4A !important;}
+
+ul.border_sup ul, ul.border_sup ul li{list-style-position: inside; margin: 0; padding:0;background: none !important;}
+ul.border_sup ul li a{font-weight:normal;}
+ul.border_sup a{padding-left:0px; margin-left:-2px}
+#menu_navegacio>ul.border_sup a, .contenidor>ul#menu a{margin-left:-10px; padding-left:0px;}
+ul.border_sup li.ultim{padding-bottom:5px; }
+
+li.marge_llista, .marge_llista{ margin-left:8px !important; }
+li.marge_llista2, .marge_llista2{ margin-left:16px !important; }
+
+#menu_navegacio>ul.border_sup a, .contenidor>ul#menu a{margin-left:-10px; padding-left:0px;}
+
+
+.enllac_gris {color:#585854; font-weight:bold; text-decoration:none; line-height: 1.5em;}
+
+
+
+ul.llista_inside_blau li, .blau{ background:  url("../images/bullet_blau_major.gif") top left no-repeat;}
+ul.llista_inside_blau li a, .blau{ color: #0D506C !important;}
+ul.llista_inside_blau li, ul.llista_inside li{margin-bottom:7px;}
+ul.llista_inside_blau>li { 
+	padding-left:0px;
+}
+ul.llista_inside_blau li, ul.llista_inside_gris li, ul.llista_inside_no_bullet li{ margin-left: 0;}
+ul.llista_inside_blau>li, ul.llista_inside_gris>li, ul.llista_inside_no_bullet>li{ margin-left: 0; padding-left: 13px;}
+ul.llista_inside_blau>li li { padding-left: 10px;}
+ul.llista_inside_blau li ul { margin-left: 0; padding-left: 0;}
+ul.llista_inside_blau li>ul li>ul{ margin-left:-13px; padding-left: 0;}
+ul.llista_inside_blau, ul.llista_inside_blau ul { list-style-type: none; list-style-position: inside; margin: 0 0 0 0; padding: 0; line-height: 1.5em; }
+.subtitol_marro{font-weight:bold; color:#660303; text-decoration:none; font-size: 1.15em;}

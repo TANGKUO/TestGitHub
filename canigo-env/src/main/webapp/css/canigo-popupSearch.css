@@ -1,0 +1,37 @@
+
+/* css for autocomplete, search panel and paged select. */
+
+.popupSearch span{
+border: 0px solid black;
+}
+
+.popupSearch {
+-moz-box-sizing:border-box;
+box-sizing:border-box;
+background-color:white;
+border: 1px solid black;
+position:absolute;
+}
+
+
+.popupSearch ul {
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.popupSearch ul li {
+list-style:none;
+margin:0;
+padding:0;
+}
+
+#searchPanelDiv table th {
+border-bottom: 2px solid black;
+font-weight: bold;
+}
+#searchPanelDiv table tr {
+border-left: 1px solid black;
+border-rigth: 1px solid black;
+font-weight: bold;
+}

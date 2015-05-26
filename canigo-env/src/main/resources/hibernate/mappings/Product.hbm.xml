@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+	"-//Hibernate/Hibernate Mapping DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="net.gencat.ctti.canigo.samples.prototip.model">
+	<class
+		name="Product"
+		table="PRODUCT"
+	>
+		<id
+			name="id"
+			type="string"
+			column="PRODUCTID"
+		>
+			<generator class="assigned"/>
+		</id>
+
+		<property
+			name="name"
+			column="NAME"
+			type="string"
+			not-null="false"
+			length="80"
+		/>
+		<property
+			name="descn"
+			column="DESCN"
+			type="string"
+			not-null="false"
+			length="255"
+		/>
+		<many-to-one
+			name="category"
+			column="CATEGORY"
+			class="Category"
+			not-null="true"
+		>
+		</many-to-one>
+
+		<set
+			inverse="true"
+			lazy="true"
+			name="items"
+		>
+			<key column="PRODUCTID" />
+			<one-to-many class="Item" />
+		</set>
+
+
+
+	</class>	
+</hibernate-mapping>

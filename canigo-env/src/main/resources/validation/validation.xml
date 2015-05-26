@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_2_0.dtd">
+     
+
+ <form-validation>
+
+	<global>
+    	<constant>
+        	<constant-name>any</constant-name>
+	        <constant-value>^([0-9][0-9][0-9][0-9])$</constant-value>
+    	</constant>
+	</global>
+    <formset>
+    
+    	<!-- Validacions de Traces -->
+    	 <form name="traces">
+          <field property="dia" depends="required">
+             <arg0 key="forms.traces.llistaTraces.dia"/>
+          </field>
+         </form>
+
+     
+    
+        <!-- Pruebas validaciones Categories -->
+        <!--  IF VALIDATION IN CLIENT USE THIS -->
+        <!-- form name="category">
+          < field property="descn" depends="required">
+             <arg0 key="forms.categoryForm.field.descn"/>
+          </field>
+         </form-->
+        
+        
+        
+        <!--  IF VALIDATION OF BUSINESS USE THIS -->
+        <!-- form name="net.gencat.ctti.canigo.samples.prototip.model.Category">     
+           <field property="descn" depends="required">
+	          <arg0 key="forms.categoryForm.field.descn"/>
+          </field>     
+                                               
+          </form-->
+        <!-- Fin pruebas --> 
+       
+       <form name="item">         
+          <field property="attr1" depends="required">
+             <arg0 key="forms.itemForm.field.name"/>
+          </field>
+          
+          <field property="id" depends="required">
+	          <arg0 key="forms.itemForm.field.id"/>
+          </field>
+    	</form>
+       <form name="user">         
+          <field property="userName" depends="required">
+             <arg0 key="forms.userForm.field.userName"/>
+          </field>
+          <field property="password" depends="required">
+	          <arg0 key="forms.userForm.field.password"/>
+          </field>
+          <field property="group.id" depends="required">
+	          <arg0 key="forms.userForm.field.group"/>
+          </field>
+          <field property="roles" depends="required">
+	          <arg0 key="forms.userForm.field.roles"/>
+          </field>
+    	</form>
+    	<form name="security">         
+          <field property="name" depends="required">
+             <arg0 key="forms.field.name"/>
+          </field>
+    	</form>
+       <form name="product">         
+          <field property="name" depends="required">
+             <arg0 key="forms.productForm.field.name"/>
+          </field>
+          
+          <field property="id" depends="required">
+	          <arg0 key="forms.productForm.field.id"/>
+          </field>
+    	</form>
+       <form name="mail">         
+          <field property="fromAddress" depends="required">
+             <arg0 key="forms.mailForm.field.from"/>
+          </field>
+          <field property="toAddress" depends="required">
+             <arg0 key="forms.mailForm.field.to"/>
+          </field>
+          <field property="subject" depends="required">
+             <arg0 key="forms.mailForm.field.subject"/>
+          </field>
+          <field property="message" depends="required">
+             <arg0 key="forms.mailForm.field.message"/>
+          </field>
+    	</form>
+       <form name="file">         
+          <field property="currentDir" depends="required">
+             <arg0 key="forms.fileForm.field.currentDir"/>
+          </field>
+          <field property="file" depends="required">
+             <arg0 key="forms.fileForm.field.file"/>
+          </field>
+    	</form>
+
+
+       <!--  IF VALIDATION IN CLIENT USE THIS -->
+       <form name="account">
+          <field property="firstname" depends="required,mask">
+             <arg0 key="forms.accountForm.field.firstname"/>
+             <msg name="mask" key="nameForm.errors.firstname.mask"/>
+             <var>
+             	<var-name>mask</var-name>
+             	<var-value>^[a-zA-Z]*$</var-value>
+             </var>             
+          </field>
+          
+          <field property="lastname" depends="required">
+             <arg0 key="forms.accountForm.field.lastname"/>
+          </field>
+          <field property="lastname" indexedListProperty="accounts">
+             <arg0 key="forms.accountForm.field.lastname"/>
+          </field>
+         <field property="password" depends="required">
+             <arg0 key="forms.accountForm.field.password"/>
+          </field>
+          <field property="addr1" depends="required">
+             <arg0 key="forms.accountForm.field.addr1"/>
+          </field>
+          <field property="city" depends="required">
+             <arg0 key="forms.accountForm.field.city"/>
+          </field>
+          <field property="state" depends="required">
+             <arg0 key="forms.accountForm.field.state"/>
+          </field>
+          <field property="zip" depends="required">
+             <arg0 key="forms.accountForm.field.zip"/>
+          </field>
+          <field property="country" depends="required">
+             <arg0 key="forms.accountForm.field.country"/>
+          </field>
+          <field property="phone" depends="required">
+             <arg0 key="forms.accountForm.field.phone"/>
+          </field>
+          <field property="password" depends="required">
+             <arg0 key="forms.accountForm.field.password"/>
+          </field>
+          <field property="preferredCategory" depends="required">
+	          <arg0 key="forms.accountForm.field.preferredCategory"/>
+          </field>                             
+          <field property="email" depends="email">
+	          <arg0 key="forms.accountForm.field.email"/>
+          </field>
+                    
+          <!--  Not applicable because in bean date is a well-formed java.util.Date -->
+          <!-- field property="birthdate" depends="required,date">
+             <arg0 key="forms.accountForm.field.birthDate"/>
+             <arg1 key="${var:datePattern}"/>
+             <var><var-name>datePattern</var-name><var-value>dd/MM/yyyy</var-value></var>
+          </field -->
+    	
+    	</form>
+    
+       <!--  IF VALIDATION OF BUSINESS USE THIS -->
+       <form  name="pruebaAccount"><!--
+         <field property="birthdate" depends="date">
+             <arg0 key="forms.accountForm.field.birthDate"/>
+             <arg1 key="${var:datePattern}"/>
+             <var><var-name>datePattern</var-name><var-value>dd/MM/yyyy</var-value></var>
+          </field>
+         --><field property="firstname" depends="required,mask">
+             <arg0 key="forms.accountForm.field.firstname"/>
+             <msg name="mask" key="nameForm.errors.firstname.mask"/>
+             <var>
+             	<var-name>mask</var-name>
+             	<var-value>^[a-zA-Z]*$</var-value>
+             </var>             
+          </field>          
+          <field property="preferredCategory.id" depends="required">
+	          <arg0 key="forms.accountForm.field.preferredCategory"/>
+          </field>                             
+          <field property="email" depends="email">
+	          <arg0 key="forms.accountForm.field.email"/>
+          </field>                             
+          <!--<field property="lastname" depends="required">
+             <arg0 key="forms.accountForm.field.lastname"/>
+          </field>
+          --><field property="password" depends="required">
+             <arg0 key="forms.accountForm.field.password"/>
+          </field>
+          <field property="addr1" depends="required">
+             <arg0 key="forms.accountForm.field.addr1"/>
+          </field>
+          <field property="city" depends="required">
+             <arg0 key="forms.accountForm.field.city"/>
+          </field>
+          <field property="state" depends="required">
+             <arg0 key="forms.accountForm.field.state"/>
+          </field>
+          <field property="zip" depends="required">
+             <arg0 key="forms.accountForm.field.zip"/>
+          </field>
+          <field property="country" depends="required">
+             <arg0 key="forms.accountForm.field.country"/>
+          </field>
+          <field property="phone" depends="required">
+             <arg0 key="forms.accountForm.field.phone"/>
+          </field>
+          <field property="password" depends="required">
+             <arg0 key="forms.accountForm.field.password"/>
+          </field>
+          
+       </form>
+    </formset>
+</form-validation>
+

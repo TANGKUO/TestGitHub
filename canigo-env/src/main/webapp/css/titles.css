@@ -1,0 +1,68 @@
+.appTitle { 
+	float:left;  
+	font-family:Arial,sans-serif; 
+	color:#660303; 
+	text-decoration:none;  
+	font-size: 1.9em;   
+	background: url("../images/flechamenu.gif") left no-repeat;    
+	margin: 0 0 -5px 25px;    
+	padding: 0 0 0 10px;
+	height: 29px;
+}
+
+
+span.bulletTitle { 
+	background: url("../images/bullet_noticies_.gif") no-repeat; 
+	padding: 0 0 0 12px; 
+	margin: 0 0 0 0; 
+	color:#4D4C4A; 
+	font-weight:bold;   
+	text-decoration:none;
+}
+
+
+
+/* Info export */
+div.exportlinks {
+	background-color: #eee;
+	border: 1px dotted #999;
+	padding: 2px 4px 2px 4px;
+	margin: 2px 0 10px 0;
+	width: 100%;
+}
+
+.sectionTitle {	
+	width:100%;
+	font-family:verdana; 	
+	font-weight:bold; 
+	color:#581F01; 
+	text-decoration:none; 
+	font-size: 1.15em; 
+}
+
+a.sectionTitle { 
+	color:#AC2115;
+}
+
+
+
+.line, H1 {
+    PADDING-RIGHT: 0px;
+    PADDING-LEFT: 0px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 1.5em;
+    PADDING-BOTTOM: 5px;
+    MARGIN: 5px 0px;
+    WIDTH: 100%;
+    COLOR: #585854;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: #d6d6d6 1px solid;
+    FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+
+.titolContingut{
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 1.5454em;
+	color: #660303;
+}

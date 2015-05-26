@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	
+
+
+	<bean id="customEditors" class="java.util.HashMap">
+		<constructor-arg>
+	        <map>
+	            <entry key="java.util.Date">
+					<bean class="net.gencat.ctti.canigo.services.i18n.spring.beans.propertyeditors.CustomDateEditor">
+						<property name="i18nService" ref="i18nService"/>
+						         <property name="localeDatePatternsMap">
+									    <map>
+									      <entry>
+									        <key><value>es</value></key>
+									        <value>dd/MM/yyyy</value>
+									      </entry>
+									      <entry>
+									        <key><value>es_ES</value></key>
+									        <value>dd/MM/yyyy</value>
+									      </entry>
+									      <entry>
+									        <key><value>ca_ES</value></key>
+									        <value>dd/MM/yyyy</value>
+									      </entry>
+									      <entry>
+									        <key><value>ca</value></key>
+									        <value>dd/MM/yyyy</value>
+									      </entry>
+									      <entry>
+									        <key><value>en</value></key>
+									        <value>MM/dd/yyyy</value>
+									      </entry>
+									      <entry>
+									        <key><value>en_GB</value></key>
+									        <value>MM/dd/yyyy</value>
+									      </entry>
+									    </map>
+								  </property>
+					</bean>
+		       </entry>	       	        	        
+	        </map>
+    	</constructor-arg>
+    </bean>
+	
+	<bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+	   <property name="customEditors"><ref local="customEditors"></ref></property>
+	</bean>
+
+		
+</beans>

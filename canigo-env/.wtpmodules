@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId">
+    <wb-module deploy-name="canigo-env">
+        <module-type module-type-id="jst.web">
+            <version>2.4</version>
+            <property name="context-root" value="canigo-env"/>
+            <property name="java-output-path" value="/bin/"/>
+        </module-type>
+        <wb-resource source-path="/src/main/java" deploy-path="/WEB-INF/classes"/>
+        <wb-resource source-path="/src/main/webapp" deploy-path="/"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources" /> 
+    </wb-module>
+</project-modules>
+
